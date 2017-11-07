@@ -1,0 +1,32 @@
+function CalculateVolume(A)
+{
+    var left = 0;
+    var maxleft = 0;
+    var right = A.length - 1;
+    var maxright = 0;
+    var volume = 0;
+    
+    while(A[left] < right) {
+        if(A[left] > maxleft) {
+            maxleft = A[left];
+        }
+        
+        if(A[right] > maxright) {
+            maxright = A[right];
+        }
+        if(maxleft >= maxright) {
+            volume = volume + maxright - A[right];
+            right--;
+        } else {
+            volume = volume + maxleft - A[left];
+            left++;
+        }
+        
+    }
+    
+    return volume;
+}
+
+var A = [2, 5, 1, 2, 3, 4, 7, 7, 6];
+var B = CalculateVolume(A);
+print(B);
