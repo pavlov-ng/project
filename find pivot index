@@ -1,0 +1,19 @@
+//Найти такой индекс, для которого сумма левых членов равна сумме правых. Или -1
+function aaa (nums) {
+    var sum = 0, leftsum = 0;
+    for(var i = 0; i < nums.length; i++)
+    {
+        sum += nums[i];
+    }
+    for(var i = 0; i < nums.length; i++)
+    {
+        if (leftsum == sum - nums[i] - leftsum) return i;
+        leftsum += nums[i];
+    }
+    return -1;
+};
+
+
+var nums = [1,7,3,6,5,6];
+
+print(aaa(nums));
