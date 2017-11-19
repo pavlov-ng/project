@@ -1,5 +1,4 @@
 var words = ["w","wo","wor","worl", "world"];
-//var words = {'0': 'w', '1': 'wo', '2': 'wor', '3': 'worl', '4': 'world'}; // Создаём ассоциативный массив
 
 if (!String.prototype.includes) {
   String.prototype.includes = function() {
@@ -8,37 +7,50 @@ if (!String.prototype.includes) {
   };
 }
 
+function Set() {
+    var setObj = {}, val = {};
+
+    this.add = function(str) {
+        setObj[str] = val;
+    };
+
+    this.contains = function(str) {
+        if (setObj[str] === val) return str;
+        else return false;
+    };
+}
+
 function longestWord(words) {
     var answer = "";
-    var currentWord = [];
-
-    for (var i in words) { currentWord[i] = words[i]; }
+    var set = new Set();
+    for (var i in words) { set.add(words[i]); }
     for (var i in words)
     {
         print('');
-        print("Ключ = " + i + "; Значение = " + words[i]);
+//        print("Ключ = " + i + "; Значение = " + words[i]);
         print("Answer before", answer);
-        if (currentWord[i].length > answer.length || (currentWord[i].length == answer.length && currentWord[i] < answer))
+        if (words[i].length > answer.length || (words[i].length == answer.length && words[i] < answer))
         {
             var good = true;
             print(good);
-            for(k = 1; k < currentWord[i].length; k++)
+            for(k = 1; k < words[i].length; k++)
             {
                 print(k);
-                if(!answer.includes(currentWord[i].substring(0, k))) 
+                if(!set.contains(words[i].substring(0, k))) 
                 {
-                    print(currentWord[i].substring(0, k));
+                    print(words[i].substring(0, k));
                     good = false;
                     print(good);
                     break;
                 }
             }
             
-            if (good) answer = currentWord[i];
+            if (good) answer = words[i];
             print("Answer after", answer);
         }
     }
-    
     return answer;
-
 };
+
+var aaa = longestWord(words);
+print("Answer:", aaa);
