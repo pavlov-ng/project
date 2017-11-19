@@ -1,0 +1,44 @@
+var words = ["w","wo","wor","worl", "world"];
+//var words = {'0': 'w', '1': 'wo', '2': 'wor', '3': 'worl', '4': 'world'}; // Создаём ассоциативный массив
+
+if (!String.prototype.includes) {
+  String.prototype.includes = function() {
+    'use strict';
+    return String.prototype.indexOf.apply(this, arguments) !== -1;
+  };
+}
+
+function longestWord(words) {
+    var answer = "";
+    var currentWord = [];
+
+    for (var i in words) { currentWord[i] = words[i]; }
+    for (var i in words)
+    {
+        print('');
+        print("Ключ = " + i + "; Значение = " + words[i]);
+        print("Answer before", answer);
+        if (currentWord[i].length > answer.length || (currentWord[i].length == answer.length && currentWord[i] < answer))
+        {
+            var good = true;
+            print(good);
+            for(k = 1; k < currentWord[i].length; k++)
+            {
+                print(k);
+                if(!answer.includes(currentWord[i].substring(0, k))) 
+                {
+                    print(currentWord[i].substring(0, k));
+                    good = false;
+                    print(good);
+                    break;
+                }
+            }
+            
+            if (good) answer = currentWord[i];
+            print("Answer after", answer);
+        }
+    }
+    
+    return answer;
+
+};
