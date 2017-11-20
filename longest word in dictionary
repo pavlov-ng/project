@@ -1,5 +1,7 @@
-var words = ["w","wo","wor","worl", "world"];
+//var words = ["w","wo","wor","worl", "world"];
+var words = ["a", "banana", "appl", "app", "ap", "apply", "apple"];
 
+//Добавим функцию includes
 if (!String.prototype.includes) {
   String.prototype.includes = function() {
     'use strict';
@@ -7,6 +9,7 @@ if (!String.prototype.includes) {
   };
 }
 
+//Создадим асоциативный массив с методами
 function Set() {
     var setObj = {}, val = {};
 
@@ -20,37 +23,30 @@ function Set() {
     };
 }
 
+//Определим самое длинное слово
 function longestWord(words) {
     var answer = "";
     var set = new Set();
-    for (var i in words) { set.add(words[i]); }
+    for (var i in words) { set.add(words[i]); }   //Заполним ассоциативный массив
     for (var i in words)
     {
-        print('');
-//        print("Ключ = " + i + "; Значение = " + words[i]);
-        print("Answer before", answer);
         if (words[i].length > answer.length || (words[i].length == answer.length && words[i] < answer))
         {
+            //Если текущее слово подходит
             var good = true;
-            print(good);
             for(k = 1; k < words[i].length; k++)
             {
-                print(k);
+                //Проверим посимвольно слово с наличием  в массиве
                 if(!set.contains(words[i].substring(0, k))) 
                 {
-                    print(words[i].substring(0, k));
                     good = false;
-                    print(good);
                     break;
                 }
             }
-            
             if (good) answer = words[i];
-            print("Answer after", answer);
         }
     }
     return answer;
 };
 
-var aaa = longestWord(words);
-print("Answer:", aaa);
+print("Answer:", longestWord(words));
