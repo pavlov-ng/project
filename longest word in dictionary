@@ -9,7 +9,7 @@ if (!String.prototype.includes) {
   };
 }
 
-//Создадим асоциативный массив с методами
+//Создадим ассоциативный массив с методами
 function Set() {
     var setObj = {}, val = {};
 
