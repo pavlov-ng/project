@@ -1,0 +1,29 @@
+function reverse(x)
+{
+    var rev_val = 0,
+        sign = 1,
+        temp_val = 0;
+    
+    if(x < 0) {
+        x = Math.abs(x);
+        sign = -1;
+    }
+    
+    while(x != 0)
+    {
+        var tail = x%10;
+        temp_val = rev_val*10 + tail;
+        
+        if((temp_val - tail) / 10 != rev_val) return 0;
+        rev_val = temp_val;
+        x = Math.floor(x/10);
+    }
+    
+    if(rev_val > 2147483650) {
+        return 0;}
+    else
+        return rev_val * sign;    
+}
+
+var val = 1534236469;
+print(reverse(val));
